@@ -14,6 +14,75 @@ client.slash = new Discord.Collection()
 client.commands = new Discord.Collection();
 const { Routes } = require("discord-api-types/v9")
 const { REST } = require("@discordjs/rest")
+const moment = require('moment');
+const tz = require('moment-timezone');
+
+function autoclock() {
+    // clockchannel: // ID of a voice channel that used to display the time
+    // timezone:  // Timezone (take a look at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List, add '(z) in last to show GMT)
+    // format:  // Clock format, leave this default seting for 24h format, read more at https://momentjs.com/docs/#/displaying/format/
+    // updateinterval // Discord is ratelimiting us for 10 minutes!
+    const timezone = "Asia/Ho_Chi_Minh"
+    const clockchannel = process.env.Clock_Channel;
+    setTimeout(() => {
+        let timeNow = moment().tz(timezone).format("HH:mm");
+        let dayofweek = moment().tz(timezone).format("E");
+        let weekofyear = moment().tz(timezone).format("W");
+        let thuws;
+        switch (dayofweek) {
+            case "1":
+                thuws = "Thứ hai"
+                break;
+            case "2":
+                thuws = "Thứ ba"
+                break;
+            case "3":
+                thuws = "Thứ tư"
+                break;
+            case "4":
+                thuws = "Thứ năm"
+                break;
+            case "5":
+                thuws = "Thứ sáu"
+                break;
+            case "6":
+                thuws = "Thứ bảy"
+                break;
+            case "7":
+                thuws = "Chủ Nhật"
+                break;
+        }
+        let dayofyear = moment().tz(timezone).format("DDD");
+        let fullday = moment().tz(timezone).format("DD/MM/YYYY");
+
+        let mac_dinh = `Bây giờ là **${timeNow}**`;
+        switch (moment().tz(timezone).format("HH")) {
+            case "23":
+                string = mac_dinh + " rồi đấy. Đi ngủ đi! Và chúc bạn ngủ ngon nhen :relaxed:"
+                break;
+            case "00":
+                string = mac_dinh + ". Chào ngày mới **" + fullday + `**!. Hôm nay là **${thuws}** của tuần thứ ${weekofyear}, ngày ${dayofyear == "365"?`cuối cùng của` : `thứ ${dayofyear} trong`} năm. ${dayofyear == "1"?`**CHÚC MỪNG NĂM MỚI!!** :partying_face:`:``}`
+                break;
+            case "06":
+                string = mac_dinh + ". Chào buổi sáng mọi người! :yawning_face:"
+                break;
+            case "10":
+                string = mac_dinh + ". Chúc mọi người buổi trưa vui vẻ! :face_exhaling:"
+                break;
+            case "14":
+                string = mac_dinh + ". Haizz, chưa gì đã đến chiều rồi sao? :persevere:"
+                break;
+            case "18":
+                string = mac_dinh + ". Chúc mọi người buổi tối tốt lành! :hugging:. Ăn ngon miệng nhaa!"
+                break;
+            default:
+                string = mac_dinh;
+                break;
+        }
+        client.channels.cache.get(clockchannel).send(string).then(console.log(colors.green(string + " => Sent to " + process.env.Clock_Channel))).catch(console.error);
+        autoclock(); //Hehe
+    }, (((60 - Number(moment().tz(timezone).format("m"))) * 60 + (60 - Number(moment().tz(timezone).format("s")))) * 1000));
+}
 
     console.log(colors.bold(colors.cyan('Preparing and Running...')));
 
@@ -66,7 +135,7 @@ const { REST } = require("@discordjs/rest")
     (async () => {
         try {
             await rest.put(
-                Routes.applicationCommands(process.env.clientID),
+                Routes.applicationCommands(process.env.clientID), //Do chưa login nên không thể lấy ID tự động được (client.user.id)
                     { body: arrayOfSlashCommands }
                 )
             console.log(colors.bold(colors.green(`Loaded all Slash Commands!`)))
@@ -95,6 +164,8 @@ const { REST } = require("@discordjs/rest")
         console.log(colors.green(`Online`));
         console.log(`Bot hiện đang theo dõi ${client.channels.cache.size} kênh và phục vụ ${cmdcount} lệnh chữ và ${slscount} lệnh gạch chéo cho ${client.users.cache.size} người dùng`);
         console.log('=========================================================================================================');
+    
+        autoclock();
     });
 
     client.on("messageCreate", async (message) => {
