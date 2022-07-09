@@ -1,6 +1,6 @@
 {
   "name": "bmd-custom-bot",
-  "version": "0.0.1",
+  "version": "0.0.1-dev",
   "description": "Custom Bot of BMDSMP Server",
   "main": "index.js",
   "scripts": {
