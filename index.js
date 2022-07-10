@@ -90,7 +90,7 @@ function autoclock() {
         }
         client.channels.cache.get(clockchannel).send(string).then(console.log(colors.green(string + " => Sent to " + process.env.Clock_Channel))).catch(console.error);
         autoclock(); //Hehe
-    }, (((60 - Number(moment().tz(timezone).format("m"))) * 60 + (60 - Number(moment().tz(timezone).format("s")))) * 1000));
+    }, (((59 - Number(moment().tz(timezone).format("m"))) * 60 + (60 - Number(moment().tz(timezone).format("s")))) * 1000)); // Need re-check code
 }
 
     console.log(colors.bold(colors.cyan('Preparing and Running...')));
