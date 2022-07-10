@@ -55,25 +55,25 @@ function autoclock() {
         let dayofyear = moment().tz(timezone).format("DDD");
         let fullday = moment().tz(timezone).format("DD/MM/YYYY");
 
-        let mac_dinh = `Bây giờ là **${timeNow}**`;
+        let mac_dinh = `Bây giờ là ${timeNow}`;
         switch (moment().tz(timezone).format("HH")) {
             case "23":
-                string = mac_dinh + " rồi đấy. Đi ngủ đi! Và chúc bạn ngủ ngon nhen :relaxed:"
+                string = mac_dinh + " rồi đấy. Đi ngủ đi! Và chúc bạn ngủ ngon nhen :v"
                 break;
             case "00":
-                string = mac_dinh + ". Chào ngày mới **" + fullday + `**!. Hôm nay là **${thuws}** của tuần thứ ${weekofyear}, ngày ${dayofyear == "365"?`cuối cùng của` : `thứ ${dayofyear} trong`} năm. ${dayofyear == "1"?`**CHÚC MỪNG NĂM MỚI!!** :partying_face:`:``}`
+                string = mac_dinh + ". Chào ngày mới " + fullday + `!. Hôm nay là ${thuws} của tuần thứ ${weekofyear}, ngày ${dayofyear == "365"?`cuối cùng của` : `thứ ${dayofyear} trong`} năm. ${dayofyear == "1"?`CHÚC MỪNG NĂM MỚI!!`:``}`
                 break;
             case "06":
-                string = mac_dinh + ". Chào buổi sáng mọi người! :yawning_face:"
+                string = mac_dinh + ". Chào buổi sáng mọi người!"
                 break;
             case "10":
-                string = mac_dinh + ". Chúc mọi người buổi trưa vui vẻ! :face_exhaling:"
+                string = mac_dinh + ". Chúc mọi người buổi trưa vui vẻ!"
                 break;
             case "14":
-                string = mac_dinh + ". Haizz, chưa gì đã đến chiều rồi sao? :persevere:"
+                string = mac_dinh + ". Haizz, chưa gì đã đến chiều rồi sao?"
                 break;
             case "18":
-                string = mac_dinh + ". Chúc mọi người buổi tối tốt lành! :hugging:. Ăn ngon miệng nhaa!"
+                string = mac_dinh + ". Chúc mọi người buổi tối tốt lành!. Ăn ngon miệng nhaa!"
                 break;
             default:
                 string = mac_dinh;
