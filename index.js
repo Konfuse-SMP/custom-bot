@@ -58,22 +58,31 @@ function autoclock() {
         let mac_dinh = `Bây giờ là ${timeNow}`;
         switch (moment().tz(timezone).format("HH")) {
             case "23":
-                string = mac_dinh + " rồi đấy. Đi ngủ đi! Và chúc bạn ngủ ngon nhen :v"
+                string = mac_dinh + " rồi đấy. Đi ngủ đi! Và chúc bạn ngủ ngon nhen :v (一_一) Zzz"
                 break;
             case "00":
                 string = mac_dinh + ". Chào ngày mới " + fullday + `!. Hôm nay là ${thuws} của tuần thứ ${weekofyear}, ngày ${dayofyear == "365"?`cuối cùng của` : `thứ ${dayofyear} trong`} năm. ${dayofyear == "1"?`CHÚC MỪNG NĂM MỚI!!`:``}`
                 break;
             case "06":
-                string = mac_dinh + ". Chào buổi sáng mọi người!"
+                string = mac_dinh + ". Chào buổi sáng mọi người! Cùng chào đón một ngày tốt lành nào (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧!"
                 break;
-            case "10":
-                string = mac_dinh + ". Chúc mọi người buổi trưa vui vẻ!"
+            case "08":
+                string = mac_dinh + ". Bắt đầu làm việc thôi! ಠ~ಠ"
+                break;
+            case "11":
+                string = mac_dinh + ". Chúc mọi người buổi trưa vui vẻ! (✿´‿`)"
                 break;
             case "14":
-                string = mac_dinh + ". Haizz, chưa gì đã đến chiều rồi sao?"
+                string = mac_dinh + ". Haizz, chưa gì đã đến chiều rồi sao? ᕙ(⇀‸↼‶)ᕗ"
                 break;
             case "18":
-                string = mac_dinh + ". Chúc mọi người buổi tối tốt lành!. Ăn ngon miệng nhaa!"
+                string = mac_dinh + ". Đã tối rồi sao!?! Sao nhanh vậy ┬─┬ノ( º _ ºノ)"
+                break;
+            case "19":
+                string = mac_dinh + ". Ăn tối ngon miệng nhaa! ~(˘▾˘~)"
+                break;
+            case "20":
+                string = mac_dinh + ". Chiến thôi! (ง'̀-'́)ง"
                 break;
             default:
                 string = mac_dinh;
