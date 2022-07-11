@@ -159,7 +159,7 @@ function autoclock() {
     client.on('ready', () => {
         let i = 0;
         setInterval(() => {
-            let activities = [`${prefix}help`,`Minecraft`,`${client.channels.cache.size} kênh`,`Minecraft`,`${cmdcount} lệnh chữ`,`Minecraft`, `${slscount} lệnh gạch chéo`,`B***khun`, `${client.users.cache.size} người dùng`,`Minecraft`]
+            let activities = [`${prefix}ping`,`Minecraft`,`${client.channels.cache.size} kênh`,`Minecraft`,`${cmdcount} lệnh chữ`,`Minecraft`, `${slscount} lệnh gạch chéo`,`B***khun`, `${client.users.cache.size} người dùng`,`Minecraft`]
             client.user.setActivity(`${activities[i ++ % activities.length]}`, {
                 type: "LISTENING",
             })
@@ -178,7 +178,6 @@ function autoclock() {
     });
 
     client.on("messageCreate", async (message) => {
-        if(message.author.bot) return;
         if(message.channel.type === 'dm') return;
         if(message.content.startsWith(prefix)) {
             const args = message.content.slice(prefix.length).trim().split(/ +/);

@@ -1,6 +1,6 @@
 {
   "name": "bmd-custom-bot",
-  "version": "0.0.1-dev",
+  "version": "1.0.0",
   "description": "Custom Bot of BMDSMP Server",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@discordjs/rest": "^0.5.0",
+    "advanced-calculator": "^1.1.0",
     "colors": "^1.4.0",
     "discord-api-types": "^0.36.1",
     "discord.js": "^13.8.1",
