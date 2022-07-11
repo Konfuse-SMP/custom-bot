@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 const fs = require('fs');
 const dir = './commands';
-const slashdir = '../slash';
+const slashdir = './slash';
 const config = require('../config.json')
 const package = require('../package.json')
 const os = require('os');
