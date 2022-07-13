@@ -191,6 +191,32 @@ function autoclock() {
             }
             else message.reply(`Cú pháp tin nhắn của bạn đang không theo Mẫu. Vui lòng tự tạo một Thread.`)
         }
+        if(message.channel.id == process.env.assets_channel && !message.author.bot) {
+            if (message.attachments.size == 0) return;
+            let array = message.attachments.first(message.attachments.size);
+            let embedarray = new Array;
+            let i=0;
+            let imgcount=0;
+            for (let count = 0; count < array.length; count++) {
+                if(array[count].contentType.substring(0, array[count].contentType.indexOf("/",0)) == "image") {imgcount++};
+            }
+            for (let count = 0; count < array.length; count++) {
+                if (array[count].contentType.substring(0, array[count].contentType.indexOf("/",0)) == "image") {
+                    let embed; i++;
+                    embed = new Discord.MessageEmbed()
+                        .setColor('RANDOM')
+                        .setTitle(`**Ảnh thứ ${count+1}**`)
+                        .setURL(`${array[count].url}`)
+                        .setAuthor({name: 'Lấy link ảnh gốc nhanh #StopUsingBroswer', iconURL:'https://cdn-icons-png.flaticon.com/512/157/157366.png'})
+                        .setDescription(`${array[count].url}`)
+                        .setThumbnail(`${array[count].url}`)
+                        .setTimestamp()
+                        .setFooter({text: `Ảnh thứ ${i}/${imgcount}`, iconURL:`https://i.imgur.com/pNuRjf6.png`})
+                    embedarray.push(embed);
+                }
+            }
+            message.reply({embeds: embedarray});
+        }
         if(message.content.startsWith(prefix)) {
             const args = message.content.slice(prefix.length).trim().split(/ +/);
             const command = args.shift().toLowerCase();
