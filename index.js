@@ -179,6 +179,18 @@ function autoclock() {
 
     client.on("messageCreate", async (message) => {
         if(message.channel.type === 'dm') return;
+        if(message.channel.id == process.env.bug_channel && !message.author.bot && !message.channel.isThread()) {
+            let content = message.content;
+            var name;
+            if (content.includes("**", 0) && content.includes("**", content.includes("**", 0)+"**".length)) {
+                name = content.substring(content.indexOf("**", 0)+"**".length, content.indexOf("**", content.indexOf("**", 0)+"**".length+1))
+                message.startThread({name: name, autoArchiveDuration: 10080, reason: `${message.author.tag} báo cáo issue ${name}`}).then((thread) => {
+                    console.log(colors.green(`Đã tạo Thread cho ${message.author.tag} báo cáo issue ${name} (${thread.id})`))
+                    thread.send(`**Chủ đề được tự động tạo bởi <@${message.author.id}>**\n<@&${process.env.operator_roleid}>`)
+                })
+            }
+            else message.reply(`Cú pháp tin nhắn của bạn đang không theo Mẫu. Vui lòng tự tạo một Thread.`)
+        }
         if(message.content.startsWith(prefix)) {
             const args = message.content.slice(prefix.length).trim().split(/ +/);
             const command = args.shift().toLowerCase();
