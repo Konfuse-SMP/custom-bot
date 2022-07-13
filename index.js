@@ -215,7 +215,7 @@ function autoclock() {
                     embedarray.push(embed);
                 }
             }
-            message.reply({embeds: embedarray});
+            message.reply({embeds: embedarray}).then(() => {console.log(colors.green(`Đã đưa link ảnh gốc của ${i} ảnh cho tin nhắn ID ${message.id}`))});
         }
         if(message.content.startsWith(prefix)) {
             const args = message.content.slice(prefix.length).trim().split(/ +/);
