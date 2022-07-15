@@ -16,7 +16,7 @@ module.exports = {
     */
     async run (client, message, args) { 
         if (!args[0]) {
-            return message.reply(`${config.prefix}calc <Phép toán> (\`sin\`, \`cos\`, \`tan\`, \`ln\`, \`log\`, \`sqrt\`, \`+\`, \`-\`, \`*\`, \`/\`, \`%\`, \`^\`, \`max\`, \`min\``)
+            return message.reply(`${config.prefix}calc <Phép tính> (\`sin\`, \`cos\`, \`tan\`, \`ln\`, \`log\`, \`sqrt\`, \`+\`, \`-\`, \`*\`, \`/\`, \`%\`, \`^\`, \`max\`, \`min\``)
         } else {
             try {
                 var kq = await math.evaluate(args.slice(0).join(""));
