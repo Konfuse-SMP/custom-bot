@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const { MessageActionRow, MessageButton, Client, CommandInteraction } = require("discord.js");
+const colors = require("colors");
 module.exports = {
     name: "tempmessage",
     description: "Tự động xóa tin nhắn tiếp theo bạn sẽ gửi (trong kênh này) sau số giây quy định",
@@ -30,12 +31,12 @@ module.exports = {
             setTimeout(async () => {
                 try {
                  const msg = await message.first().delete();
-                    console.log(`Đã xóa tin nhắn ${msg.content} của ${msg.author.tag} theo ý của người đấy (${time}s)`)
-                    interaction.editReply({content: `Đã xóa tin nhắn của bạn!`, ephemeral: true})
+                    console.log(colors.green(`Đã xóa tin nhắn "${msg.content}" của ${msg.author.tag} theo ý của họ (${time}s)`))
+                    interaction.editReply({content: `**Đã xóa tin nhắn của bạn!**`, ephemeral: true})
                 }
                 catch {
                     interaction.editReply({content: `Đã có lỗi xảy ra khi xóa của bạn!`, ephemeral: true})
-                    console.error(error);
+                    console.error(colors.red(error));
                 };
             }, time*1000);
         })
