@@ -23,7 +23,7 @@ function autoclock() {
     // format:  // Clock format, leave this default seting for 24h format, read more at https://momentjs.com/docs/#/displaying/format/
     // updateinterval // Discord is ratelimiting us for 10 minutes!
     const timezone = "Asia/Ho_Chi_Minh"
-    const clockchannel = process.env.Clock_Channel.split(", ");
+    var clockchannel = new process.env.Clock_Channel.split(", ");
     setTimeout(() => {
         let timeNow = moment().tz(timezone).format("HH:mm");
         let dayofweek = moment().tz(timezone).format("E");
@@ -176,7 +176,7 @@ function autoclock() {
         console.log(`Bot hiện đang theo dõi ${client.channels.cache.size} kênh và phục vụ ${cmdcount} lệnh chữ và ${slscount} lệnh gạch chéo cho ${client.users.cache.size} người dùng`);
         console.log('=========================================================================================================');
         
-        autoclock();
+        //!Disabled autoclock();
     });
 
     client.on("messageCreate", async (message) => {
