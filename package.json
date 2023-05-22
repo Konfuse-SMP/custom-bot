@@ -1,11 +1,11 @@
 {
   "name": "bmd-custom-bot",
-  "version": "1.6.2",
-  "description": "Custom Bot of BMDSMP Server",
+  "version": "1.6.3",
+  "description": "Custom Discord Bot for Konfuse SMP",
   "main": "index.js",
   "scripts": {
-    "debug": "node ./index.js",
-    "start": "node ./index.js"
+    "debug": "node ./index.js --max-old-space-size=2048",
+    "start_custom_bot": "node ./index.js --max-old-space-size=1024"
   },
   "keywords": [
     "bmdsmp",
